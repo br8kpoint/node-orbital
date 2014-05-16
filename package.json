@@ -1,0 +1,27 @@
+{
+  "name": "node-orbital",
+  "version": "0.0.1",
+  "description": "A nodejs module for accessing the orbital payment gateway and managing payments and profiles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "chase",
+    "managed",
+    "billing"
+  ],
+  "author": "Mike Fair <mike@biblesforisrael.com>"
+  , "dependencies" : {
+     "moment" : "*"
+    , "request": "*"
+    , "swiz":"*"
+    ,"xtend":"*"
+  },
+  "devDependencies":{
+    "chai":"*",
+    "mocha":"*"
+  }
+  , "license": "GPL"
+}
