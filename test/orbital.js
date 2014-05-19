@@ -35,7 +35,7 @@ describe("Configuration", function(){
 describe("Profiles", function(){
 	var orbital = new Orbital(testconfig)
 	describe("#addProfile", function(){
-		var CustomerRefNum = "Test_" + Math.floor(Math.random() * 100) 
+		var CustomerRefNum = "Test_" + Math.floor(Math.random() * 10000) 
 		CustomerRefNum = CustomerRefNum.toUpperCase() // need to make upper case because chase converts to upper case.
 		var profile = new Profile({
 				CustomerRefNum: CustomerRefNum,
@@ -89,8 +89,6 @@ describe("Profiles", function(){
 				if(response.CustomerRefNum == CustomerRefNum){
 					done(err, response);
 				}else{
-					console.log("Response:", response.CustomerRefNum)
-					console.log("Expected:", CustomerRefNum)
 					done(new Error("CustomerRefNum doesn't match"), null)
 				}
 			})
@@ -108,15 +106,13 @@ describe("Profiles", function(){
 				CustomerProfileAction:"R"				
 			})
 			orbital.retrieve(request, function(err, response){
-				console.log("Profile:", response)
 				if(err) return done(err);
 				response.CustomerAddress1 = "Updated Address";
 				response.CustomerAddress2 = "Updated Address 2"
 				orbital.update(response, function(err, updated){
-					console.log("Update:", updated)
 					if(err) return done(err);
-					updated.CustomerAddress1.should.equal(response.CustomerAddress1);
-					updated.CustomerAddress2.should.equal(response.CustomerAddress2);
+					updated.CustomerAddress1.toUpperCase().should.equal(response.CustomerAddress1.toUpperCase());
+					updated.CustomerAddress2.toUpperCase().should.equal(response.CustomerAddress2.toUpperCase());
 					done(err, updated);
 				})
 			})
