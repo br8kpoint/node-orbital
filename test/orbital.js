@@ -1,6 +1,7 @@
 var should = require ("chai").should();
 var Orbital = require("../index").Orbital;
 var Profile = require("../index").Profile;
+var NewOrder = require("../index").NewOrder;
 var testconfig = require("../testconfig.js")
 describe("Configuration", function(){
 	it("Should throw an exception if no username specified",function(){
@@ -116,6 +117,40 @@ describe("Profiles", function(){
 					done(err, updated);
 				})
 			})
+		})
+	})
+})
+
+describe("NewOrder", function(){
+	var orbital = new Orbital(testconfig)
+	describe("#addNewOrder", function(){
+		var order = new NewOrder({
+				IndustryType: "EC",
+				MessageType: "AC",
+				BIN: "000001",				
+				TerminalID:"001",
+				CardBrand:"",
+				AccountNum: "5454545454545454",
+				Exp : "0112",
+				CurrencyCode: "840",
+				CurrencyExponent:"2",
+				AVSzip: "25541",
+				AVSaddress1: "123 Test Street",
+				AVSaddress2:"Suite 350",
+				AVScity: "Test City",
+				AVSstate: "FL",
+				AVSphoneNum: "8004564512",
+				OrderID: "8316384413",
+				Amount: "2500"
+			})
+		it("Should add an order", function(done){
+
+			orbital.create(order, function(err, response){
+				console.log(response);
+				if(err) return done(err);				
+				done();
+			});
+
 		})
 	})
 })

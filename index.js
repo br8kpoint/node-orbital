@@ -10,4 +10,13 @@ module.exports.Orbital = require("./lib/orbital")
  *
  * Use this to work with profiles.
  */
-module.exports.Profile = require("./lib/Profile")
+module.exports.Profile = require("./lib/profile")
+
+
+/**
+ * New Order Object
+ * @type {[type]}
+ *
+ * Use this object to work witn New Orders.
+ */
+module.exports.NewOrder = require("./lib/new-order")
