@@ -1,4 +1,5 @@
 var should = require ("chai").should();
+var expect = require("chai").expect;
 var Orbital = require("../index").Orbital;
 var Profile = require("../index").Profile;
 var NewOrder = require("../index").NewOrder;
@@ -70,6 +71,19 @@ describe("Profiles", function(){
 			})
 			orbital.retrieve(request, function(err, profile){				
 				done(err,profile);
+			})
+		})
+	})
+	describe("retrieveNonProfile", function(){
+		it("Should throw an error when the profile doesn't exist", function(done){
+			var request = new Profile({
+				CustomerRefNum: "I do not exist",
+				CustomerBin: "000001",
+				CustomerProfileAction:"R"				
+			})
+			orbital.retrieve(request, function(err, profile){
+				expect(err).to.be.an.instanceof(Error);				
+				done();
 			})
 		})
 	})
